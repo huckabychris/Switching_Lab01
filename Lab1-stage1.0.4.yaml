@@ -1,0 +1,879 @@
+lab:
+  description: ''
+  notes: |-
+    Network 192.168.0.0/16
+    MGMT subnets- 192.168.0.0/24
+    Routing subnets- 192.168.4.0/22
+    Servers subnets- 192.168.8.0/22
+    VLAN subnets- 192.168.32.0/20
+  timestamp: 1677949142.452095
+  title: Lab1-stage1
+  version: 0.0.4
+nodes:
+  - id: n0
+    label: SwitchA
+    node_definition: iosvl2
+    x: -1650
+    y: 650
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3562 bytes
+      !
+      ! Last configuration change at 17:08:19 UTC Sat Mar 4 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SwitchA
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$MswO$tBaPuO0uPBQx5UL6IlQ6f/
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp domain NONE
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 32-35
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 192.168.3.1 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface Vlan32
+       ip address 192.168.32.1 255.255.255.0
+      !
+      interface Vlan33
+       ip address 192.168.33.1 255.255.255.0
+      !
+      interface Vlan34
+       ip address 192.168.34.1 255.255.255.0
+      !
+      interface Vlan35
+       ip address 192.168.35.1 255.255.255.0
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      !
+      end
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet1/0
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet1/1
+        type: physical
+  - id: n1
+    label: SwitchB
+    node_definition: iosvl2
+    x: -1650
+    y: 800
+    configuration: hostname SwitchB
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet1/0
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet1/1
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet1/2
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
+        type: physical
+  - id: n2
+    label: SwitchC
+    node_definition: iosvl2
+    x: -1450
+    y: 650
+    configuration: hostname SwitchC
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet1/0
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet1/1
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet1/2
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
+        type: physical
+  - id: n3
+    label: SwitchD
+    node_definition: iosvl2
+    x: -1450
+    y: 800
+    configuration: hostname SwitchD
+    image_definition: iosvl2-2020
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet1/0
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet1/1
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet1/2
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
+        type: physical
+  - id: n4
+    label: RouterA
+    node_definition: iosv
+    x: -1300
+    y: 650
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3661 bytes
+      !
+      ! Last configuration change at 19:55:52 UTC Sat Mar 4 2023
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname Router1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      username admin privilege 15 secret 9 $9$xHQSr4ce0Er6FN$hpcQA0NyJc6QKbSL.b.weLpOSgHrKXpHJ4/ovWWon06
+      !
+      redundancy
+      !
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback1
+       ip address 192.168.0.1 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/0.32
+       description Vlan32
+       encapsulation dot1Q 32
+       ip address 192.168.32.10 255.255.255.0
+      !
+      interface GigabitEthernet0/0.33
+       description Vlan33
+       encapsulation dot1Q 33
+       ip address 192.168.33.10 255.255.255.0
+      !
+      interface GigabitEthernet0/0.34
+       description Vlan34
+       encapsulation dot1Q 34
+       ip address 192.168.34.10 255.255.255.0
+      !
+      interface GigabitEthernet0/0.35
+       description Vlan35
+       encapsulation dot1Q 35
+       ip address 192.168.35.10 255.255.255.0
+      !
+      interface GigabitEthernet0/1
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      no scheduler allocate
+      !
+      end
+    image_definition: iosv-159-3-m3
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n5
+    label: alpine0
+    node_definition: alpine
+    x: -1750
+    y: 600
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+  - id: n6
+    label: alpine-0
+    node_definition: alpine
+    x: -1850
+    y: 600
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+  - id: n7
+    label: alpine-1
+    node_definition: alpine
+    x: -1750
+    y: 850
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+  - id: n8
+    label: alpine-2
+    node_definition: alpine
+    x: -1850
+    y: 850
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+links:
+  - id: l0
+    i1: i1
+    n1: n1
+    i2: i1
+    n2: n0
+  - id: l1
+    i1: i2
+    n1: n1
+    i2: i2
+    n2: n0
+  - id: l2
+    i1: i1
+    n1: n3
+    i2: i1
+    n2: n2
+  - id: l3
+    i1: i2
+    n1: n3
+    i2: i2
+    n2: n2
+  - id: l4
+    i1: i3
+    n1: n0
+    i2: i3
+    n2: n2
+  - id: l5
+    i1: i4
+    n1: n0
+    i2: i4
+    n2: n2
+  - id: l6
+    i1: i3
+    n1: n1
+    i2: i3
+    n2: n3
+  - id: l7
+    i1: i4
+    n1: n1
+    i2: i4
+    n2: n3
+  - id: l8
+    i1: i5
+    n1: n1
+    i2: i5
+    n2: n2
+  - id: l9
+    i1: i6
+    n1: n1
+    i2: i6
+    n2: n2
+  - id: l10
+    i1: i5
+    n1: n3
+    i2: i5
+    n2: n0
+  - id: l11
+    i1: i6
+    n1: n3
+    i2: i6
+    n2: n0
+  - id: l12
+    i1: i1
+    n1: n4
+    i2: i7
+    n2: n2
+  - id: l13
+    i1: i2
+    n1: n4
+    i2: i7
+    n2: n3
+  - id: l14
+    i1: i1
+    n1: n5
+    i2: i13
+    n2: n1
+  - id: l15
+    i1: i13
+    n1: n2
+    i2: i2
+    n2: n5
+  - id: l16
+    i1: i13
+    n1: n3
+    i2: i3
+    n2: n5
+  - id: l17
+    i1: i1
+    n1: n6
+    i2: i14
+    n2: n1
+  - id: l18
+    i1: i14
+    n1: n2
+    i2: i2
+    n2: n6
+  - id: l19
+    i1: i14
+    n1: n3
+    i2: i3
+    n2: n6
+  - id: l20
+    i1: i1
+    n1: n7
+    i2: i15
+    n2: n1
+  - id: l21
+    i1: i2
+    n1: n7
+    i2: i15
+    n2: n2
+  - id: l22
+    i1: i15
+    n1: n3
+    i2: i3
+    n2: n7
+  - id: l23
+    i1: i1
+    n1: n8
+    i2: i16
+    n2: n1
+  - id: l24
+    i1: i2
+    n1: n8
+    i2: i16
+    n2: n2
+  - id: l25
+    i1: i3
+    n1: n8
+    i2: i16
+    n2: n3

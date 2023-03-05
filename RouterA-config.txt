@@ -1,0 +1,47 @@
+hostname Router1
+
+logging buffer 99999
+
+username admin priv 15 secret admin
+
+ip cef
+no ipv6 cef
+
+ip forward-protocol nd
+
+cdp run
+lldp run
+
+int lo1
+ip add 192.168.0.1 255.255.255.255
+
+int g0/0
+
+int g0/1
+
+int g0/0.32
+desc Vlan32
+encapsulation dot1q 32
+ip add 192.168.32.10 255.255.255.0
+
+int g0/0.33
+desc Vlan33
+encapsulation dot1q 33
+ip add 192.168.33.10 255.255.255.0
+
+int g0/0.34
+desc Vlan34
+encapsulation dot1q 34
+ip add 192.168.34.10 255.255.255.0
+
+int g0/0.35
+desc Vlan35
+encapsulation dot1q 35
+ip add 192.168.35.10 255.255.255.0
+
+line console 0
+logging synchronous
+
+line vty 0 15
+login local
+transport input all
