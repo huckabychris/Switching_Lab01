@@ -1,0 +1,90 @@
+hostname SwitchB
+
+logging buffer 99999
+
+username admin priv 15 secret admin
+
+cdp run
+lldp run
+
+vtp domain NONE
+vtp mode transparent
+
+ip routing
+
+ip cef
+no ipv6 cef
+
+ip forward-protocol nd
+
+spanning-tree mode pvst
+spanning-tree extend system-id
+
+vlan 32-35
+
+int lo0
+ip add 192.168.3.2 255.255.255.255
+
+int g0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g0/2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g0/3
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g1/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g1/2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+interface GigabitEthernet3/0
+ switchport access vlan 32
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ switchport access vlan 33
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/2
+ switchport access vlan 34
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ switchport access vlan 35
+ switchport mode access
+ negotiation auto
+!
+
+int vlan 32
+ip add 192.168.32.2 255.255.255.0
+
+int vlan 33
+ip add 192.168.33.2 255.255.255.0
+
+int vlan 34
+ip add 192.168.34.2 255.255.255.0
+
+int vlan 35
+ip add 192.168.35.2 255.255.255.0
+
+line console 0
+logging synchronous
+
+line vty 0 15
+login local
+transport input all
