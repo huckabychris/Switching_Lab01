@@ -1,6 +1,7 @@
 hostname SwitchB
 
 logging console
+
 logging buffer 99999
 
 username admin priv 15 secret admin

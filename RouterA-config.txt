@@ -1,6 +1,7 @@
 hostname Router1
 
 logging console
+
 logging buffer 99999
 
 username admin priv 15 secret admin
@@ -38,11 +39,13 @@ ip dhcp pool vlan35
  default-router 192.168.35.10
  lease 0 0 10
 
+
 int lo1
 ip add 192.168.0.1 255.255.255.255
 
 int g0/0
 no shutdown
+
 
 int g0/1
 

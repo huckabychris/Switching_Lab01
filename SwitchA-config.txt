@@ -1,6 +1,7 @@
 hostname SwitchA
 !
 logging console
+
 logging buffer 99999
 !
 username admin priv 15 secret admin
@@ -66,6 +67,7 @@ switch mode access
 int g3/3
 switchport access vlan 35
 switch mode access
+
 
 
 interface GigabitEthernet3/0
