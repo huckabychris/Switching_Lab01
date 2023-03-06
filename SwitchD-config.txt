@@ -1,7 +1,10 @@
 hostname SwitchD
 !
+<<<<<<< HEAD
+=======
 logging console
 
+>>>>>>> e4eed1c94743f170fdd3d81a97795fabc19e08ec
 logging buffer 99999
 !
 username admin priv 15 secret admin

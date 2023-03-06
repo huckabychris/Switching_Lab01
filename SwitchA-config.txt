@@ -52,6 +52,8 @@ int g1/2
 switchport trunk encapsulation dot1q
 switchport mode trunk
 
+<<<<<<< HEAD
+=======
 int g3/0
 switchport access vlan 32
 switch mode access
@@ -70,6 +72,7 @@ switch mode access
 
 
 
+>>>>>>> e4eed1c94743f170fdd3d81a97795fabc19e08ec
 interface GigabitEthernet3/0
  switchport access vlan 32
  switchport mode access
