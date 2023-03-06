@@ -1,5 +1,6 @@
 hostname Router1
 
+logging console
 logging buffer 99999
 
 username admin priv 15 secret admin
@@ -12,10 +13,36 @@ ip forward-protocol nd
 cdp run
 lldp run
 
+ip dhcp excluded-address 192.168.32.1 192.168.32.20
+ip dhcp excluded-address 192.168.33.1 192.168.33.20
+ip dhcp excluded-address 192.168.34.1 192.168.34.20
+ip dhcp excluded-address 192.168.35.1 192.168.35.20
+!
+ip dhcp pool vlan32
+ network 192.168.32.0 255.255.255.0
+ default-router 192.168.32.10
+ lease 0 0 10
+!
+ip dhcp pool vlan33
+ network 192.168.33.0 255.255.255.0
+ default-router 192.168.33.10
+ lease 0 0 10
+!
+ip dhcp pool vlan34
+ network 192.168.34.0 255.255.255.0
+ default-router 192.168.34.10
+ lease 0 0 10
+!
+ip dhcp pool vlan35
+ network 192.168.35.0 255.255.255.0
+ default-router 192.168.35.10
+ lease 0 0 10
+
 int lo1
 ip add 192.168.0.1 255.255.255.255
 
 int g0/0
+no shutdown
 
 int g0/1
 

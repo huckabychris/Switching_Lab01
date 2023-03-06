@@ -5,8 +5,8 @@ lab:
     MGMT subnets- 192.168.0.0/24
     Routing subnets- 192.168.4.0/22
     Servers subnets- 192.168.8.0/22
-    User subnets- 192.168.32.0/20
-  timestamp: 1677801362.5911603
+    VLAN subnets- 192.168.32.0/20
+  timestamp: 1678036694.954272
   title: Lab1-stage1
   version: 0.0.4
 nodes:
@@ -14,8 +14,211 @@ nodes:
     label: SwitchA
     node_definition: iosvl2
     x: -1650
-    y: 650
-    configuration: hostname SwitchA
+    y: 550
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 4482 bytes
+      !
+      ! Last configuration change at 17:32:12 UTC Sun Mar 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SwitchA
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      logging buffered 99999
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$MswO$tBaPuO0uPBQx5UL6IlQ6f/
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp domain NONE
+      vtp mode transparent
+      no ip routing
+      !
+      !
+      !
+      no ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 32-35
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 192.168.3.1 255.255.255.255
+       no ip route-cache
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       switchport access vlan 32
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       switchport access vlan 33
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       switchport access vlan 34
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/3
+       switchport access vlan 35
+       switchport mode access
+       negotiation auto
+      !
+      interface Vlan32
+       ip address 192.168.32.1 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan33
+       ip address 192.168.33.1 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan34
+       ip address 192.168.34.1 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan35
+       ip address 192.168.35.1 255.255.255.0
+       no ip route-cache
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CCCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CCCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CCCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+       logging synchronous
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      !
+      end
     image_definition: iosvl2-2020
     tags: []
     interfaces:
@@ -45,13 +248,260 @@ nodes:
       - id: i6
         slot: 5
         label: GigabitEthernet1/1
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet1/2
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
         type: physical
   - id: n1
     label: SwitchB
     node_definition: iosvl2
-    x: -1650
-    y: 800
-    configuration: hostname SwitchB
+    x: -1750
+    y: 900
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 4615 bytes
+      !
+      ! Last configuration change at 17:32:13 UTC Sun Mar 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SwitchB
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      logging buffered 99999
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$U4ZF$YyTRll6QrH/u8q/Ysj.K5/
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp domain NONE
+      vtp mode transparent
+      no ip routing
+      !
+      !
+      !
+      no ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 32-35
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 192.168.3.2 255.255.255.255
+       no ip route-cache
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       switchport access vlan 32
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       switchport access vlan 33
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       switchport access vlan 34
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/3
+       switchport access vlan 35
+       switchport mode access
+       negotiation auto
+      !
+      interface Vlan32
+       ip address 192.168.32.2 255.255.255.0
+       ip helper-address 192.168.32.10
+       no ip route-cache
+      !
+      interface Vlan33
+       ip address 192.168.33.2 255.255.255.0
+       ip helper-address 192.168.33.10
+       no ip route-cache
+      !
+      interface Vlan34
+       ip address 192.168.34.2 255.255.255.0
+       ip helper-address 192.168.34.10
+       no ip route-cache
+      !
+      interface Vlan35
+       ip address 192.168.35.2 255.255.255.0
+       ip helper-address 192.168.35.10
+       no ip route-cache
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+       logging synchronous
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      !
+      end
     image_definition: iosvl2-2020
     tags: []
     interfaces:
@@ -81,13 +531,256 @@ nodes:
       - id: i6
         slot: 5
         label: GigabitEthernet1/1
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet1/2
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
         type: physical
   - id: n2
     label: SwitchC
     node_definition: iosvl2
-    x: -1450
-    y: 650
-    configuration: hostname SwitchC
+    x: -1300
+    y: 600
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 4479 bytes
+      !
+      ! Last configuration change at 17:32:13 UTC Sun Mar 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SwitchC
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      logging buffered 99999
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$Jngd$gG9qvuNkqoRV.Exk5sat4.
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp domain NONE
+      vtp mode transparent
+      no ip routing
+      !
+      !
+      !
+      no ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 32-35
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 192.168.3.3 255.255.255.255
+       no ip route-cache
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       switchport access vlan 32
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       switchport access vlan 33
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       switchport access vlan 34
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/3
+       switchport access vlan 35
+       switchport mode access
+       negotiation auto
+      !
+      interface Vlan32
+       ip address 192.168.32.3 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan33
+       ip address 192.168.33.3 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan34
+       ip address 192.168.34.3 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan35
+       ip address 192.168.35.3 255.255.255.0
+       no ip route-cache
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+       logging synchronous
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      !
+      end
     image_definition: iosvl2-2020
     tags: []
     interfaces:
@@ -121,13 +814,252 @@ nodes:
       - id: i7
         slot: 6
         label: GigabitEthernet1/2
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
         type: physical
   - id: n3
     label: SwitchD
     node_definition: iosvl2
-    x: -1450
-    y: 800
-    configuration: hostname SwitchD
+    x: -1300
+    y: 850
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 4479 bytes
+      !
+      ! Last configuration change at 17:32:11 UTC Sun Mar 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SwitchD
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      logging buffered 99999
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$6jyO$TGcPFZk0/Oq1YzlWDFL3Z1
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp domain NONE
+      vtp mode transparent
+      no ip routing
+      !
+      !
+      !
+      no ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 32-35
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 192.168.3.4 255.255.255.255
+       no ip route-cache
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       switchport access vlan 32
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       switchport access vlan 33
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       switchport access vlan 34
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet3/3
+       switchport access vlan 35
+       switchport mode access
+       negotiation auto
+      !
+      interface Vlan32
+       ip address 192.168.32.4 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan33
+       ip address 192.168.33.4 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan34
+       ip address 192.168.34.4 255.255.255.0
+       no ip route-cache
+      !
+      interface Vlan35
+       ip address 192.168.35.4 255.255.255.0
+       no ip route-cache
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^CCC
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+       logging synchronous
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      !
+      end
     image_definition: iosvl2-2020
     tags: []
     interfaces:
@@ -162,12 +1094,241 @@ nodes:
         slot: 6
         label: GigabitEthernet1/2
         type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet1/3
+        type: physical
+      - id: i9
+        slot: 8
+        label: GigabitEthernet2/0
+        type: physical
+      - id: i10
+        slot: 9
+        label: GigabitEthernet2/1
+        type: physical
+      - id: i11
+        slot: 10
+        label: GigabitEthernet2/2
+        type: physical
+      - id: i12
+        slot: 11
+        label: GigabitEthernet2/3
+        type: physical
+      - id: i13
+        slot: 12
+        label: GigabitEthernet3/0
+        type: physical
+      - id: i14
+        slot: 13
+        label: GigabitEthernet3/1
+        type: physical
+      - id: i15
+        slot: 14
+        label: GigabitEthernet3/2
+        type: physical
+      - id: i16
+        slot: 15
+        label: GigabitEthernet3/3
+        type: physical
   - id: n4
-    label: iosv-0
+    label: RouterA
     node_definition: iosv
-    x: -1300
+    x: -1100
     y: 650
-    configuration: ''
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 4297 bytes
+      !
+      ! Last configuration change at 17:32:33 UTC Sun Mar 5 2023
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname Router1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip dhcp excluded-address 192.168.32.1 192.168.32.20
+      ip dhcp excluded-address 192.168.33.1 192.168.33.20
+      ip dhcp excluded-address 192.168.34.1 192.168.34.20
+      ip dhcp excluded-address 192.168.35.1 192.168.35.20
+      !
+      ip dhcp pool vlan32
+       network 192.168.32.0 255.255.255.0
+       default-router 192.168.32.10
+       lease 0 0 10
+      !
+      ip dhcp pool vlan33
+       network 192.168.33.0 255.255.255.0
+       default-router 192.168.33.10
+       lease 0 0 10
+      !
+      ip dhcp pool vlan34
+       network 192.168.34.0 255.255.255.0
+       default-router 192.168.34.10
+       lease 0 0 10
+      !
+      ip dhcp pool vlan35
+       network 192.168.35.0 255.255.255.0
+       default-router 192.168.35.10
+       lease 0 0 10
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      username admin privilege 15 secret 9 $9$xHQSr4ce0Er6FN$hpcQA0NyJc6QKbSL.b.weLpOSgHrKXpHJ4/ovWWon06
+      !
+      redundancy
+      !
+      lldp run
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback1
+       ip address 192.168.0.1 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       no ip address
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/0.32
+       description Vlan32
+       encapsulation dot1Q 32
+       ip address 192.168.32.10 255.255.255.0
+      !
+      interface GigabitEthernet0/0.33
+       description Vlan33
+       encapsulation dot1Q 33
+       ip address 192.168.33.10 255.255.255.0
+      !
+      interface GigabitEthernet0/0.34
+       description Vlan34
+       encapsulation dot1Q 34
+       ip address 192.168.34.10 255.255.255.0
+      !
+      interface GigabitEthernet0/0.35
+       description Vlan35
+       encapsulation dot1Q 35
+       ip address 192.168.35.10 255.255.255.0
+      !
+      interface GigabitEthernet0/1
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CCCC
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^CCCC
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^CCCC
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+       logging synchronous
+      line aux 0
+      line vty 0 4
+       login local
+       transport input all
+      line vty 5 15
+       login local
+       transport input all
+      !
+      no scheduler allocate
+      !
+      end
     image_definition: iosv-159-3-m3
     tags: []
     interfaces:
@@ -189,6 +1350,126 @@ nodes:
       - id: i4
         slot: 3
         label: GigabitEthernet0/3
+        type: physical
+  - id: n5
+    label: alpine0
+    node_definition: alpine
+    x: -1450
+    y: 450
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname alpine0
+      # configurable user account
+      USERNAME=admin
+      PASSWORD=admin
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+  - id: n6
+    label: alpine1
+    node_definition: alpine
+    x: -1800
+    y: 450
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname alpine1
+      # configurable user account
+      USERNAME=admin
+      PASSWORD=admin
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+  - id: n7
+    label: alpine2
+    node_definition: alpine
+    x: -1550
+    y: 1000
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname alpine2
+      # configurable user account
+      USERNAME=admin
+      PASSWORD=admin
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
+        type: physical
+  - id: n8
+    label: alpine3
+    node_definition: alpine
+    x: -1950
+    y: 1000
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname alpine3
+      # configurable user account
+      USERNAME=admin
+      PASSWORD=admin
+    image_definition: alpine-3-13-2-base
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+      - id: i2
+        slot: 2
+        label: eth2
+        type: physical
+      - id: i3
+        slot: 3
+        label: eth3
         type: physical
 links:
   - id: l0
@@ -261,3 +1542,83 @@ links:
     n1: n4
     i2: i7
     n2: n3
+  - id: l14
+    i1: i1
+    n1: n5
+    i2: i13
+    n2: n1
+  - id: l15
+    i1: i13
+    n1: n2
+    i2: i2
+    n2: n5
+  - id: l16
+    i1: i13
+    n1: n3
+    i2: i3
+    n2: n5
+  - id: l17
+    i1: i1
+    n1: n6
+    i2: i14
+    n2: n1
+  - id: l18
+    i1: i14
+    n1: n2
+    i2: i2
+    n2: n6
+  - id: l19
+    i1: i14
+    n1: n3
+    i2: i3
+    n2: n6
+  - id: l20
+    i1: i1
+    n1: n7
+    i2: i15
+    n2: n1
+  - id: l21
+    i1: i2
+    n1: n7
+    i2: i15
+    n2: n2
+  - id: l22
+    i1: i15
+    n1: n3
+    i2: i3
+    n2: n7
+  - id: l23
+    i1: i1
+    n1: n8
+    i2: i16
+    n2: n1
+  - id: l24
+    i1: i2
+    n1: n8
+    i2: i16
+    n2: n2
+  - id: l25
+    i1: i3
+    n1: n8
+    i2: i16
+    n2: n3
+  - id: l26
+    i1: i0
+    n1: n5
+    i2: i13
+    n2: n0
+  - id: l27
+    i1: i14
+    n1: n0
+    i2: i0
+    n2: n6
+  - id: l28
+    i1: i0
+    n1: n7
+    i2: i15
+    n2: n0
+  - id: l29
+    i1: i16
+    n1: n0
+    i2: i0
+    n2: n8
